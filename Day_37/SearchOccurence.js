@@ -1,36 +1,40 @@
 function runProgram(input) {
    
-    input = input.trim().split("\n");
-    //console.log(input)
-    for(var i = 1; i<input.length; i+=2){
-        var strLen = input[i];
-        var str = input[i+1];
-        //console.log(str,strLen)
-        var obj = {}
-        for(let j = 0; j<strLen; j++){
-            if(!obj[str[j]]){
-                obj[str[j]] = 1
+    input = input.trim().split("\r\n");
+    let [len, key] = input[0].split(" ").map(Number);
+    let arr = input[1].split(" ").map(Number)
+    let ans = -1;
+    let lo = 0;
+    let hi = len - 1
+   let startIndex = returnPoint()
+   console.log(startIndex)
+
+
+    function returnPoint(){
+        while(lo <= hi){
+            let mid = Math.floor( (lo+hi) / 2)
+
+
+            if(arr[mid] === key){
+               ans = mid;
+               hi = mid 
+            }
+            else if(arr[mid] > key){
+                hi = mid - 1
             }
             else{
-                obj[str[j]] -= 1
+                lo = mid + 1
             }
         }
-        //console.log(obj)
-        let count = 0
-     for(keys in obj){
-        // console.log(obj[keys])
-         if(  obj[keys] === 1){
-            count += 1
-         }
-     }
-     if(count > 1){
-         console.log("No")
-     }
-     else{
-         console.log("Yes")
-     }
+        return ans
+        
     }
-  
+    let count = 0
+    while(arr[startIndex] === key){
+        count += 1
+    startIndex += 1 
+    }
+    console.log(count)
   
     
         
@@ -58,4 +62,7 @@ function runProgram(input) {
                process.exit(0);
         });
        }
-       
+      
+      
+      
+    

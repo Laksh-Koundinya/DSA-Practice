@@ -1,10 +1,15 @@
 function runProgram(input) {
+    input = input.trim().split("\n")
+
+    for(let i = 1; i<input.length; i++){
+        var milkContainer = Number(input[i])
+        var res = NumberOfways(milkContainer)
+        console.log(res)
+    }
    
-    input = input.trim()
     //console.log(input)
-  var boxes = Number(input)
-  var res = NumberOfways(input)
-  console.log(res)
+    
+ 
 
 
   function NumberOfways(n){
@@ -15,7 +20,7 @@ function runProgram(input) {
           return 0
       }
     else{
-        return NumberOfways(n-1) + NumberOfways(n-3) + NumberOfways(n-5)
+        return NumberOfways(n-4) + NumberOfways(n-8) 
     }
          
       
